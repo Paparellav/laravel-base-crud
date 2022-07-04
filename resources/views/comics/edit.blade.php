@@ -52,6 +52,5 @@
             <textarea type="text" class="form-control" id="description" name="description">{{ old('description') ? old('description') : $current_comic->description }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Conferma modifiche</button>
     </form>
 @endsection

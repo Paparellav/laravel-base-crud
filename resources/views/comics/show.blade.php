@@ -24,12 +24,13 @@
                 {{ $current_comic->type }}
             </p>
             <div class="d-flex">
-                <a class="btn btn-primary me-2" href="{{ route('comics.edit', ['comic' => $current_comic->id]) }}">Update</a>
+                <a class="btn btn-primary me-2"
+                    href="{{ route('comics.edit', ['comic' => $current_comic->id]) }}">Update</a>
 
                 <form action="{{ route('comics.destroy', ['comic' => $current_comic->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
             </div>
         </li>
