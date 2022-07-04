@@ -15,5 +15,6 @@ class Comic extends Model
         'sale_date',
         'type'
     ];
+    
     protected $table = 'comics';
 }

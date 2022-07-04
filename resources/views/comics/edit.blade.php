@@ -49,8 +49,7 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <input type="text" class="form-control" id="description" name="description"
-                value="{{ old('description') ? old('description') : $current_comic->description }}"></input>
+            <textarea type="text" class="form-control" id="description" name="description">{{ old('description') ? old('description') : $current_comic->description }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Conferma modifiche</button>

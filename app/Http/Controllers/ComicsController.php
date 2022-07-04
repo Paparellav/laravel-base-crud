@@ -36,16 +36,18 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->checkValidationRules());
         $data = $request->all();
         $new_comic = new Comic();
 
-        $new_comic->title = $data['title'];
-        $new_comic->description = $data['description'];
-        $new_comic->thumb = $data['thumb'];
-        $new_comic->price = $data['price'];
-        $new_comic->series = $data['series'];
-        $new_comic->sale_date = $data['sale_date'];
-        $new_comic->type = $data['type'];
+        // $new_comic->title = $data['title'];
+        // $new_comic->description = $data['description'];
+        // $new_comic->thumb = $data['thumb'];
+        // $new_comic->price = $data['price'];
+        // $new_comic->series = $data['series'];
+        // $new_comic->sale_date = $data['sale_date'];
+        // $new_comic->type = $data['type'];
+        $new_comic->fill($data);
 
         $new_comic->save();
 
@@ -90,7 +92,7 @@ class ComicsController extends Controller
         $current_comic = Comic::findOrFail($id);
         $current_comic->update($data);
 
-        return redirect()->route('comics.index', ['comic' => $current_comic->id]);
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -101,7 +103,10 @@ class ComicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $current_comic = Comic::findOrFail($id);
+        $current_comic->delete();
+
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -109,7 +114,7 @@ class ComicsController extends Controller
      *
      * @return Array
      */
-    private function checkValidationRules() 
+    private function checkValidationRules()
     {
         return [
             'title' => 'required|max:150|min:5',
